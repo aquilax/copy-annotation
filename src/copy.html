@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <title>Copy content</title>
+    <head>
+        <style>
+            html, body, section {
+                height: 100%;
+                margin:0;
+            }
+            section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            textarea {
+                min-width: 600px;
+                height: 200px;
+            }
+            button {
+                min-width: 600px;
+                padding: 1em 0;
+            }
+        </style>
+    </head>
+<body>
+    <section>
+        <textarea></textarea>
+        <button autofocus id="copy">Copy</button>
+    </section>
+    <script src="content.js"></script>
+</body>
+</html>
