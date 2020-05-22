@@ -4,7 +4,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
       code: "window.getSelection().toString();"
     },
     function(selection) {
-      doCopy(selection[0], tab.url, tab.title);
+      doCopy(selection[0], tab.url, tab.title, tab.index);
     }
   );
 });
@@ -17,7 +17,7 @@ chrome.commands.onCommand.addListener(function(command) {
           code: "window.getSelection().toString();"
         },
         function(selection) {
-          doCopy(selection[0], tabs[0].url, tabs[0].title);
+          doCopy(selection[0], tabs[0].url, tabs[0].title, tabs[0].index);
         }
       );
     });
@@ -25,15 +25,15 @@ chrome.commands.onCommand.addListener(function(command) {
 });
 
 function onClick(info, tab) {
-  doCopy(info.selectionText, tab.url, tab.title);
+  doCopy(info.selectionText, tab.url, tab.title, tab.index);
 }
 
-function doCopy(selection, url, title) {
-  const sp = new URLSearchParams("");
+function doCopy(selection, url, title, index) {
+  var sp = new URLSearchParams("");
   sp.set("selection", selection);
   sp.set("title", title);
   sp.set("url", url);
-  chrome.tabs.create({ url: "/copy.html?" + sp.toString() });
+  chrome.tabs.create({ url: "/copy.html?" + sp.toString(), index: index+1 });
 }
 
 function createContextMenuItem() {
